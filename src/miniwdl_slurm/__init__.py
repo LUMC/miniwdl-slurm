@@ -83,6 +83,8 @@ class SlurmSingularity(SingularityContainer):
         srun_args = [
             "srun",
             "--job-name", self.run_id,
+            # This labels the output with the job number so it can easily be found.
+            "--label",
         ]
 
         cpu = self.runtime_values.get("cpu", None)
