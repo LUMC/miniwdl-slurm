@@ -2,6 +2,8 @@
   hosts: localhost
   vars:
     slurm_roles: ['controller', 'exec', 'dbd']
+    slurmdb_config:
+      StorageType: "accounting_storage/mysql"
   roles:
     - role: galaxyproject.slurm
       become: True
