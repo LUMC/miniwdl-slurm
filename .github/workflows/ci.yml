@@ -36,9 +36,9 @@ jobs:
       - name: Install miniwdl-slurm
         run: pip install .
       - name: install ansible
-        run: sudo apt install ansible
+        run: sudo apt-get install ansible
       - name: download slurm role
-        run: ansible-galaxy install galaxyproject.slurm
+        run: sudo ansible-galaxy install galaxyproject.slurm
       - name: install slurm on this node
         run: sudo ansible-playbook tests/slurm_playbook.yml
       - name: run miniwdl self test
