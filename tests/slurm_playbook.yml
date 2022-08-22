@@ -4,6 +4,9 @@
     slurm_roles: ['controller', 'exec', 'dbd']
     slurmdbd_config:
       StorageType: "accounting_storage/mysql"
+      DbdHost: "localhost"
+      PidFile: "/var/run/slurmdbd.pid"
+
   roles:
     - role: galaxyproject.slurm
       become: True
