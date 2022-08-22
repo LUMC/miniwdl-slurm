@@ -10,3 +10,5 @@
   roles:
     - role: galaxyproject.slurm
       become: True
+    - role: abims_sbr.singularity
+      become: True
