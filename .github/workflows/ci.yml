@@ -43,6 +43,6 @@ jobs:
         run: sudo ansible-playbook tests/slurm_playbook.yml -vv
       - if: ${{ failure() }}
         name: Check systemd journal
-        run: sudo systemctl status slurmbdb.service
+        run: sudo systemctl status slurmdbd.service
       - name: run miniwdl self test
         run: miniwdl run-self-test
