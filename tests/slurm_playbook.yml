@@ -1,0 +1,7 @@
+- name: Slurm all in One
+  hosts: all
+  vars:
+    slurm_roles: ['controller', 'exec', 'dbd']
+  roles:
+    - role: galaxyproject.slurm
+      become: True

@@ -24,3 +24,22 @@ jobs:
         run: pip install tox
       - name: Lint
         run: tox -e lint
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Install miniwdl-slurm
+        run: pip install .
+      - name: install ansible
+        run: pip install ansible
+      - name: download slurm role
+        run: ansible-galaxy install galaxyproject.slurm
+      - name: install slurm on this node
+        run: sudo ansible-playbook tests/slurm_playbook.yml
+      - name: run miniwdl self test
+        run: miniwdl run-self-test
