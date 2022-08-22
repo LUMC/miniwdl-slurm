@@ -40,6 +40,9 @@ jobs:
       - name: download slurm role
         run: sudo ansible-galaxy install galaxyproject.slurm
       - name: install slurm on this node
-        run: sudo ansible-playbook tests/slurm_playbook.yml
+        run: sudo ansible-playbook tests/slurm_playbook.yml -vv
+      - if: ${{ failure() }}
+        name: Check systemd journal
+        run: sudo systemctl status slurmbdb.service
       - name: run miniwdl self test
         run: miniwdl run-self-test
