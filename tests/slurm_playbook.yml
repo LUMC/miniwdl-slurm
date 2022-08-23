@@ -19,7 +19,7 @@
     slurm_nodes:
       - name: "localhost"
         CPUs: 1
-        RealMemory: 6442450944
+        RealMemory: 6144  # in MB. CI nodes have about 7 GB on Github CI.
     slurm_partitions:
       - name: local
         Default: YES
