@@ -4,7 +4,7 @@
   vars:
     slurm_roles: ['controller', 'exec', 'dbd']
     slurmdbd_config:
-      StorageType: "accounting_storage/mysql"
+      StorageType: "accounting_storage/slurmdbd"
       DbdHost: "localhost"
       PidFile: "/var/run/slurmdbd.pid"
     slurm_partitions:
