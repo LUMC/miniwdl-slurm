@@ -19,7 +19,7 @@
     slurm_nodes:
       - name: "localhost"
         CPUs: 1
-        RealMemory: "6G"
+        RealMemory: 6442450944
     slurm_partitions:
       - name: local
         Default: YES
