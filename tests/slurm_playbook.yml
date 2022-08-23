@@ -2,7 +2,6 @@
   hosts: localhost
   become: true
   vars:
-    slurm_config_dir: "/etc/slurm"
     slurm_roles: ['controller', 'exec', 'dbd']
     slurmdbd_config:
       StorageType: "accounting_storage/none"
