@@ -53,7 +53,7 @@ jobs:
         if: ${{ failure() }}
       - name: Run QC workflow
         run: >- 
-          coverage --source=miniwdl_slurm -m miniwdl run 
+          coverage run --source=miniwdl_slurm -m miniwdl run 
           -i tests/integration/single_end.json 
           --cfg ../miniwdl.cfg 
           QC.wdl Cutadapt.cores=1 Cutadapt.timeMinutes=10
