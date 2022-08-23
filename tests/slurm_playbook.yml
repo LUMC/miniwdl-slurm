@@ -2,16 +2,30 @@
   hosts: localhost
   become: true
   vars:
+    slurm_config_dir: "/etc/slurm"
     slurm_roles: ['controller', 'exec', 'dbd']
     slurmdbd_config:
-      StorageType: "accounting_storage/slurmdbd"
+      StorageType: "accounting_storage/none"
       DbdHost: "localhost"
-      PidFile: "/var/run/slurmdbd.pid"
+      PidFile: "run/slurmdbd.pid"
+    slurm_config:
+      AccountingStorageType: "accounting_storage/none"
+      SlurmctldLogFile: "/var/log/slurm/slurmctld.log"
+      SlurmdLogFile: "/var/log/slurm/slurmd.log"
+      SlurmctldPidFile: "/run/slurmctld.pid"
+      SlurmdPidFile: "/run/slurmd.pid"
+      StateSaveLocation: "/var/lib/slurm/slurmctld"
+      SlurmdSpoolDir: "/var/spool/slurm/slurmd"
     slurm_partitions:
-      - name: default
+      - name: local
         Default: YES
         MaxTime: UNLIMITED
         Nodes: "localhost"
+  pre_tasks:
+    - name: create spool directory
+      file:
+        state: directory
+        path: "/var/spool/slurm/slurmd"
   roles:
     - role: galaxyproject.slurm
     - role: cyverse-ansible.singularity
