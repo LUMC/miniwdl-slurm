@@ -1,0 +1,41 @@
+- name: Slurm all in One
+  hosts: all
+  become: true
+  vars:
+    slurm_roles: ['controller', 'exec', 'dbd']
+    slurmdbd_config:
+      StorageType: "accounting_storage/none"
+      DbdHost: "localhost"
+    slurm_config:
+      AccountingStorageType: "accounting_storage/none"
+      SlurmctldLogFile: "/var/log/slurm/slurmctld.log"
+      SlurmdLogFile: "/var/log/slurm/slurmd.log"
+      SlurmctldPidFile: "/run/slurmctld.pid"
+      SlurmdPidFile: "/run/slurmd.pid"
+      StateSaveLocation: "/var/lib/slurm/slurmctld"
+      SlurmdSpoolDir: "/var/spool/slurm/slurmd"
+
+    slurm_partitions:
+      - name: local
+        Default: YES
+        MaxTime: UNLIMITED
+        Nodes: "localhost"
+    slurm_config_dir: /etc/slurm
+  pre_tasks:
+    - name: Install golang, C compiler and make
+      apt:
+        update_cache: true
+        cache_valid_time: 36000
+        install_recommends: false
+        name:
+          - golang
+          - gcc
+          - libc6-dev
+          - make
+    - name: create spool directory
+      file:
+        state: directory
+        path: "/var/spool/slurm/slurmd"
+  roles:
+    - role: galaxyproject.slurm
+    - role: cyverse-ansible.singularity
