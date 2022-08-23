@@ -18,13 +18,13 @@
       SlurmdSpoolDir: "/var/spool/slurm/slurmd"
     slurm_nodes:
       - name: "localhost"
+        CPUs: 1
+        RealMemory: "6G"
     slurm_partitions:
       - name: local
         Default: YES
         MaxTime: UNLIMITED
         Nodes: "localhost"
-        CPUs: 1
-        RealMemory: "6G"
   pre_tasks:
     - name: create spool directory
       file:
