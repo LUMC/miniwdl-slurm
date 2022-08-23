@@ -1,5 +1,6 @@
 - name: Slurm all in One
   hosts: localhost
+  become: true
   vars:
     slurm_roles: ['controller', 'exec', 'dbd']
     slurmdbd_config:
@@ -9,6 +10,4 @@
 
   roles:
     - role: galaxyproject.slurm
-      become: True
     - role: cyverse-ansible.singularity
-      become: True
