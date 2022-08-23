@@ -29,12 +29,14 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2.3.4
+        with:
+          submodules: recursive
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
       - name: Install miniwdl-slurm
-        run: pip install .
+        run: pip install . coverage
       - name: install ansible
         run: sudo apt-get install ansible
       - name: download slurm and singularity roles
@@ -49,3 +51,11 @@ jobs:
       - name: Check slurm logs
         run: "sudo bash -c 'cat /var/log/slurm/* || true'"
         if: ${{ failure() }}
+      - name: Run QC workflow
+        run: >- 
+          coverage --source=miniwdl_slurm -m miniwdl run 
+          -i tests/integration/single_end.json 
+          --cfg ../miniwdl.cfg 
+          QC.wdl Cutadapt.cores=1 Cutadapt.timeMinutes=10
+        working-directory: "tests/QC"
+      - uses: codecov/codecov-action@v3
