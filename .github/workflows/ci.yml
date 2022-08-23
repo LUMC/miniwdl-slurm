@@ -41,8 +41,7 @@ jobs:
         run: sudo ansible-galaxy install galaxyproject.slurm cyverse-ansible.singularity
       - name: install slurm and singularity on this node
         run: sudo ansible-playbook tests/slurm_playbook.yml -vv
+      - name: Check slurm logs
+        run: "sudo bash -c 'cat /var/log/slurm/*'"
       - name: run miniwdl self test
-        run: miniwdl run-self-test --cfg tests/miniwdl.cfg -vvv
-      - if: ${{ failure() }}
-        name: Check slurm logs
-        run: "bash -c 'cat /var/log/slurm/*'"
+        run: miniwdl run-self-test --cfg tests/miniwdl.cfg
