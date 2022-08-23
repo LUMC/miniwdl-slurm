@@ -46,3 +46,5 @@ jobs:
       - name: run miniwdl self test
         run: miniwdl run-self-test --cfg tests/miniwdl.cfg
         timeout-minutes: 3
+      - name: Check slurm logs
+        run: "sudo bash -c 'cat /var/log/slurm/* | true'"
