@@ -45,4 +45,4 @@ jobs:
         name: Check systemd journal
         run: sudo systemctl status slurmdbd.service
       - name: run miniwdl self test
-        run: miniwdl run-self-test --cfg tests/miniwdl.cfg
+        run: miniwdl run-self-test --cfg tests/miniwdl.cfg -vvv
