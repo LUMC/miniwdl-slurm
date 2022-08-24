@@ -26,20 +26,15 @@
         Nodes: "localhost"
     slurm_config_dir: /etc/slurm
   pre_tasks:
-    - name: Install golang, C compiler and make
+    - name: Install apptainer
       apt:
         update_cache: true
         cache_valid_time: 36000
         install_recommends: false
-        name:
-          - golang
-          - gcc
-          - libc6-dev
-          - make
+        deb: https://github.com/apptainer/apptainer/releases/download/v1.0.3/apptainer_1.0.3_amd64.deb
     - name: create spool directory
       file:
         state: directory
         path: "/var/spool/slurm/slurmd"
   roles:
     - role: galaxyproject.slurm
-    - role: cyverse-ansible.singularity

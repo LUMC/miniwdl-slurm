@@ -26,10 +26,15 @@
         MaxTime: UNLIMITED
         Nodes: "localhost"
   pre_tasks:
+    - name: Install apptainer
+      apt:
+        update_cache: true
+        cache_valid_time: 36000
+        install_recommends: false
+        deb: https://github.com/apptainer/apptainer/releases/download/v1.0.3/apptainer_1.0.3_amd64.deb
     - name: create spool directory
       file:
         state: directory
         path: "/var/spool/slurm/slurmd"
   roles:
     - role: galaxyproject.slurm
-    - role: cyverse-ansible.singularity
