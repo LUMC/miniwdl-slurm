@@ -1,7 +1,7 @@
 .. image:: https://codecov.io/gh/LUMC/miniwdl-slurm/branch/main/graph/badge.svg?token=Z7FXMDJMN9
  :target: https://codecov.io/gh/LUMC/miniwdl-slurm
  
- THIS REPOSITORY IS NOW MAINTAINED ELSEWHERE: https://github.com/miniwdl-ext/miniwdl-slurm
+THIS REPOSITORY IS NOW MAINTAINED ELSEWHERE: https://github.com/miniwdl-ext/miniwdl-slurm
 
 miniwdl-slurm
 =============
